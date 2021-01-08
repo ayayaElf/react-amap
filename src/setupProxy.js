@@ -1,15 +1,13 @@
 const {
     createProxyMiddleware
-} = require('http-proxy-middleware'); //注意写法，这是1.0以后的版本，最好按抄
+} = require('http-proxy-middleware');
 
 module.exports = function (app) {
-    app.use(createProxyMiddleware('/api', {
+    app.use('/imjad', createProxyMiddleware({
         target: 'https://api.imjad.cn',
         pathRewrite: {
-            '^/api': '',
+            '^/imjad': '',
         },
         changeOrigin: true,
-        secure: false, // 是否验证证书
-        ws: true, // 启用websocket
     }));
 };

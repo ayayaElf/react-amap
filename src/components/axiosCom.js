@@ -1,12 +1,17 @@
-import axios from '../model/axios';
+import axios from 'axios';
 
 function axiosCom(props) {
-    axios.get('/cloudmusic/?type=song&id=28012031').then(res => {
-        console.log(res.data);
+    axios.get('/imjad/cloudmusic', {
+        params: {
+            type: 'song',
+            id: '28012031',
+        }
+    }).then(res => {
+        console.log(res);
     })
     return (
         <div>
-            axios请求测试
+            请求测试
         </div>
     )
 }
