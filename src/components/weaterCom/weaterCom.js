@@ -20,10 +20,37 @@ function WeatherLiveCom(props) {
 function WeatherForecastCom(props) {
     if (!public_fun.isEmptyObject(props.weatherInfo)) {
         const data = props.weatherInfo.forecasts;
+        console.log(data);
+        const Forecast = data.map(info => 
+            <div key={info.date}>
+                <div>{info.date}</div>
+                <div className="forecastItemBox">
+                    <div>白天</div>
+                    <div>
+                        <div>天气：{info.dayWeather}</div>
+                        <div>气温：{info.dayTemp} ℃</div>
+                        <div>风向：{info.dayWindDir}</div>
+                        <div>风力：{info.dayWindPower} 级</div>
+                    </div>
+                </div>
+                <div className="forecastItemBox">
+                    <div>
+                        晚上
+                    </div>
+                    <div>
+                        <div>天气：{info.nightWeather}</div>
+                        <div>气温：{info.nightTemp} ℃</div>
+                        <div>风向：{info.nightWindDir}</div>
+                        <div>风力：{info.nightWindPower} 级</div>
+                    </div>
+                </div>
+            </div>
+        );
         let element = (
-            <>
+            <div className="forecastBox">
                 <div>未来{data.length}天预报</div>
-            </>
+                <div className="forecastItem">{Forecast}</div>
+            </div>
         );
         return element
     }
@@ -34,7 +61,7 @@ class WeaterInputCom extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            addr: '',
+            addr: '普宁市',
             weatherLiveInfo: {},
             weatherForecastInfo: {},
         }
@@ -70,6 +97,11 @@ class WeaterInputCom extends Component {
             this.getWeatherLiveInfo();
             this.getWeatherForecastInfo();
         }
+    }
+
+    componentDidMount() {
+        this.getWeatherLiveInfo();
+        this.getWeatherForecastInfo();
     }
 
     render() {
