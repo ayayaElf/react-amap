@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import public_fun from '../../Common/public_fun';
-import {getLive, getForecast} from '../../model/AMap';
+import {getCurrentPosition, getLive, getForecast} from '../../model/AMap';
 import './weaterCom.scss';
 
 function WeatherLiveCom(props) {
@@ -20,7 +20,7 @@ function WeatherLiveCom(props) {
 function WeatherForecastCom(props) {
     if (!public_fun.isEmptyObject(props.weatherInfo)) {
         const data = props.weatherInfo.forecasts;
-        console.log(data);
+        // console.log(data);
         const Forecast = data.map(info => 
             <div key={info.date}>
                 <div>{info.date}</div>
@@ -61,21 +61,21 @@ class WeaterInputCom extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            addr: '普宁市',
+            addr: '',
             weatherLiveInfo: {},
             weatherForecastInfo: {},
         }
     }
 
-    getWeatherLiveInfo = async () => {
-        let data = await getLive(this.state.addr);
+    getWeatherLiveInfo = async (addr) => {
+        let data = await getLive(addr || this.state.addr);
         this.setState({
             weatherLiveInfo: data,
         })
     }
 
-    getWeatherForecastInfo = async () => {
-        let data = await getForecast(this.state.addr);
+    getWeatherForecastInfo = async (addr) => {
+        let data = await getForecast(addr || this.state.addr);
         this.setState({
             weatherForecastInfo: data,
         })
@@ -100,8 +100,19 @@ class WeaterInputCom extends Component {
     }
 
     componentDidMount() {
-        this.getWeatherLiveInfo();
-        this.getWeatherForecastInfo();
+        setTimeout(async() => {
+            try {
+                let addr = await getCurrentPosition(this.state.addr);
+                this.getWeatherLiveInfo(addr);
+                this.getWeatherForecastInfo(addr);
+                this.setState({
+                    addr,
+                })
+            } catch {
+                this.getWeatherLiveInfo();
+                this.getWeatherForecastInfo();
+            }
+        }, 100);
     }
 
     render() {
