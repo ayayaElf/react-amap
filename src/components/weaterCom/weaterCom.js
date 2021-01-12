@@ -3,32 +3,11 @@ import {getCurrentPosition, getLive, getForecast} from '../../model/AMap';
 import { Input } from 'antd';
 import 'antd/dist/antd.css';
 import Spin from '../SpinCom/SpinCom';
+import public_fun from '../../Common/public_fun';
 import WeatherForecastCom from './WeatherForecastCom';
 import WeatherLiveCom from './WeatherLiveCom';
 import './weaterCom.scss';
-
-function changeWeaterClass(weaterType) {
-    if (!weaterType) return '';
-    let classType;
-    switch (weaterType) {
-        case '晴':
-            classType = 'sunDay';
-            break;
-        case '少云':
-            classType = 'partlyCloudy';
-            break;
-        case '多云':
-            classType = 'cloudy';
-            break;
-        case '阴':
-            classType = 'overcast';
-            break;
-        default:
-            classType = '';
-            break;
-    }
-    return classType;
-}
+import './weaterTypeImg.scss';
 
 class WeaterInputCom extends Component {
     constructor(props) {
@@ -44,7 +23,7 @@ class WeaterInputCom extends Component {
 
     getWeatherLiveInfo = async (addr) => {
         let data = await getLive(addr || this.state.addr);
-        let weatherType = changeWeaterClass(data.weather)
+        let weatherType = public_fun.changeWeaterClass(data.weather).class;
         this.setState({
             weatherLiveInfo: data,
             spinning: false,
@@ -85,22 +64,22 @@ class WeaterInputCom extends Component {
     componentDidMount() {
         this.setState({
             spinning: true,
-            addr: '普宁',
+            // addr: '普宁',
         })
         setTimeout(async() => {
-            // try {
-            //     let addr = await getCurrentPosition(this.state.addr);
-            //     this.getWeatherLiveInfo(addr);
-            //     this.getWeatherForecastInfo(addr);
-            //     this.setState({
-            //         addr,
-            //     })
-            // } catch {
-            //     this.getWeatherLiveInfo();
-            //     this.getWeatherForecastInfo();
-            // }
-            this.getWeatherLiveInfo();
-            this.getWeatherForecastInfo();
+            try {
+                let addr = await getCurrentPosition(this.state.addr);
+                this.getWeatherLiveInfo(addr);
+                this.getWeatherForecastInfo(addr);
+                this.setState({
+                    addr,
+                })
+            } catch {
+                this.getWeatherLiveInfo();
+                this.getWeatherForecastInfo();
+            }
+            // this.getWeatherLiveInfo();
+            // this.getWeatherForecastInfo();
         }, 1000);
     }
 

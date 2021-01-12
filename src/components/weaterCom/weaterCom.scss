@@ -3,9 +3,9 @@
     background: #FFB6C1;
 }
 
-// h1, h2, h3, h4, h5, h6 {
-//     color: #fff;
-// }
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+}
 
 .weaterBox {
     position: absolute;
@@ -17,7 +17,7 @@
     background-repeat:no-repeat;
     background-size:100% 100%;
     -moz-background-size:100% 100%;
-    // color: #fff;
+    color: #fff;
     .searchBox {
         width: 40vw;
         height: 100px;
@@ -63,23 +63,40 @@
 
 .forecastItemBox {
     display: flex;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+    color: #fff;
     &>h3 {
+        padding-top: 10px;
         padding-right: 20px;
     }
 }
 
-.sunDay {
-    background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhuafans.dbankcloud.com%2Fpic%2F2017%2F10%2F11%2Fc2aebdb2af0a53dc53bd19bb73e68f62_img_20160902_190835.jpg%3Fmode%3Ddownload&refer=http%3A%2F%2Fhuafans.dbankcloud.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612773602&t=91ffbe1967b85456ccd44439a46ca960);
+.textShadow {
+    text-shadow: -2px 0px 4px #000, 0px 2px 4px #000, 2px 0px 4px #000, 0px 2px 4px #000;
 }
 
-.partlyCloudy {
-    background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Feh%2Fjz%2FQJ8920692026.jpg&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612775789&t=d020a4e399538f481284cc969cfddb89);
+.smallIconFont {
+    padding-right: 6px;
+    svg {
+        width: 1em;
+        height: 1em;
+    }
 }
 
-.cloudy {
-    background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.qjimage.com%2Fph160%2Fhigh%2Fph6614-p02775.jpg&refer=http%3A%2F%2Fpic.qjimage.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612775808&t=6f0ebfafdecc4d57539d22beefb63d78);
+.iconFont {
+    padding-right: 8px;
+    svg {
+        width: 2em;
+        height: 2em;
+    }
 }
 
-.overcast {
-     background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbreadtripimages.qiniudn.com%2Fphoto_2014_07_30_8ef7b6aa757b795d4d01d022feed2725.jpg%3FimageView%2F2%2Fw%2F960%2Fq%2F85&refer=http%3A%2F%2Fbreadtripimages.qiniudn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612776105&t=b7cd3a387fb802ef6efa1c729b17222c);
+.largeIconFont {
+    padding-right: 10px;
+    svg {
+        width: 3em;
+        height: 3em;
+    }
 }
