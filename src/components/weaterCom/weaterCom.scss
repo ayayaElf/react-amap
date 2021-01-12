@@ -76,27 +76,3 @@ h1, h2, h3, h4, h5, h6 {
 .textShadow {
     text-shadow: -2px 0px 4px #000, 0px 2px 4px #000, 2px 0px 4px #000, 0px 2px 4px #000;
 }
-
-.smallIconFont {
-    padding-right: 6px;
-    svg {
-        width: 1em;
-        height: 1em;
-    }
-}
-
-.iconFont {
-    padding-right: 8px;
-    svg {
-        width: 2em;
-        height: 2em;
-    }
-}
-
-.largeIconFont {
-    padding-right: 10px;
-    svg {
-        width: 3em;
-        height: 3em;
-    }
-}

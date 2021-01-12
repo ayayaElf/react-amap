@@ -2,7 +2,8 @@ import public_fun from '../../Common/public_fun';
 import IconFont from '../IconFont/IconFont';
 
 function WeatherLiveCom(props) {
-    const weatherType = public_fun.changeWeaterClass(props.weatherInfo.weather);
+    const hour = new Date().getHours();
+    const weatherType = public_fun.changeWeaterType(props.weatherInfo.weather, hour >= 18 && hour <= 6 ? true : false);
     let element = (
         <div className="live textShadow">
             <div className="cityInfo">

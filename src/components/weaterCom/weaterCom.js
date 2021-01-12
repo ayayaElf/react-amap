@@ -23,7 +23,7 @@ class WeaterInputCom extends Component {
 
     getWeatherLiveInfo = async (addr) => {
         let data = await getLive(addr || this.state.addr);
-        let weatherType = public_fun.changeWeaterClass(data.weather).class;
+        let weatherType = public_fun.changeWeaterType(data.weather).class;
         this.setState({
             weatherLiveInfo: data,
             spinning: false,

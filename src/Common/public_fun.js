@@ -7,7 +7,7 @@ const public_fun = {
         return true; //返回true，为空对象
     },
     
-    changeWeaterClass(weaterType, isNight = false) {
+    changeWeaterType(weaterType, isNight = false) {
         if (!weaterType) return '';
         let type = {};
         if (weaterType === '晴' || weaterType === '平静') type.class = 'sunDay';

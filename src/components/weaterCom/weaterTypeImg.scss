@@ -1,3 +1,27 @@
+.smallIconFont {
+    padding-right: 6px;
+    svg {
+        width: 1em;
+        height: 1em;
+    }
+}
+
+.iconFont {
+    padding-right: 8px;
+    svg {
+        width: 2em;
+        height: 2em;
+    }
+}
+
+.largeIconFont {
+    padding-right: 10px;
+    svg {
+        width: 3em;
+        height: 3em;
+    }
+}
+
 .sunDay {
     background-image: url("../../static/img/sunDay.jpg");
 }

@@ -7,12 +7,12 @@ function WeatherForecastCom(props) {
     if (!public_fun.isEmptyObject(props.weatherInfo)) {
         const data = props.weatherInfo.forecasts;
         const Forecast = data.map(info => {
-            const weatherType = public_fun.changeWeaterClass(info.dayWeather),
+            const weatherType = public_fun.changeWeaterType(info.dayWeather),
                 weatherHeadClass: React.CSSProperties = {
                     color: '#fff',
                     textShadow: "-2px 0px 4px #000, 0px 2px 4px #000, 2px 0px 4px #000, 0px 2px 4px #000"
                 };
-            const nightWeatherType = public_fun.changeWeaterClass(info.nightWeather, true);
+            const nightWeatherType = public_fun.changeWeaterType(info.nightWeather, true);
             return (
                 <Col span={20 / data.length} key={info.date}>
                     <Card title={info.date} hoverable={true} className={weatherType.class} headStyle={weatherHeadClass}>
