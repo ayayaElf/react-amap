@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
 import {getCurrentPosition, getLive, getForecast} from '../../model/AMap';
+import React, {Component} from 'react';
 import { Input } from 'antd';
 import 'antd/dist/antd.css';
 import Spin from '../SpinCom/SpinCom';
@@ -23,7 +23,7 @@ class WeaterInputCom extends Component {
 
     getWeatherLiveInfo = async (addr) => {
         let data = await getLive(addr || this.state.addr);
-        let weatherType = public_fun.changeWeaterType(data.weather).class;
+        let weatherType = public_fun.changeWeaterType(data.weather);
         this.setState({
             weatherLiveInfo: data,
             spinning: false,
@@ -64,29 +64,30 @@ class WeaterInputCom extends Component {
     componentDidMount() {
         this.setState({
             spinning: true,
-            // addr: '普宁',
+            addr: '普宁',
         })
         setTimeout(async() => {
-            try {
-                let addr = await getCurrentPosition(this.state.addr);
-                this.getWeatherLiveInfo(addr);
-                this.getWeatherForecastInfo(addr);
-                this.setState({
-                    addr,
-                })
-            } catch {
-                this.getWeatherLiveInfo();
-                this.getWeatherForecastInfo();
-            }
-            // this.getWeatherLiveInfo();
-            // this.getWeatherForecastInfo();
+            // try {
+            //     let addr = await getCurrentPosition(this.state.addr);
+            //     this.getWeatherLiveInfo(addr);
+            //     this.getWeatherForecastInfo(addr);
+            //     this.setState({
+            //         addr,
+            //     })
+            // } catch {
+            //     this.getWeatherLiveInfo();
+            //     this.getWeatherForecastInfo();
+            // }
+            this.getWeatherLiveInfo();
+            this.getWeatherForecastInfo();
         }, 1000);
     }
 
     render() {
         return (
-            <div className={`weaterBox ${this.state.weatherType}`}>
+            <div className={`weaterBox`}>
                 <Spin spinning={this.state.spinning} tip="加载中"/>
+                <img className="backgroundImage" src={this.state.weatherType.src}  alt=""/>
                 <div className="searchBox">
                     <Input.Search 
                         size="large" 

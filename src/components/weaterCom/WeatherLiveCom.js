@@ -2,13 +2,15 @@ import public_fun from '../../Common/public_fun';
 import IconFont from '../IconFont/IconFont';
 
 function WeatherLiveCom(props) {
-    const hour = new Date().getHours();
-    const weatherType = public_fun.changeWeaterType(props.weatherInfo.weather, hour >= 18 && hour <= 6 ? true : false);
+    const hour = new Date().getHours(),
+        weatherType = public_fun.changeWeaterType(props.weatherInfo.weather, hour >= 18 && hour <= 6 ? true : false),
+        city = props.weatherInfo.city;
+    let dateStyle = {left: !!city ? `calc(${city.length * 2}rem)` : ''};
     let element = (
         <div className="live textShadow">
             <div className="cityInfo">
-                <h1>{props.weatherInfo.city}</h1>
-                <div className="date">(时间：{props.weatherInfo.reportTime})</div>
+                <h1>{city}</h1>
+                <div className="date" style={{...dateStyle}}>(时间：{props.weatherInfo.reportTime})</div>
             </div>
             <div>
                 <IconFont className="largeIconFont" type={!!weatherType.icon ? weatherType.icon : ' '}/>

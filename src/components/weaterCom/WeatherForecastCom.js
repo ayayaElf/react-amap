@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card, Col, Row } from 'antd';
 import 'antd/dist/antd.css';
 import public_fun from '../../Common/public_fun';
@@ -8,14 +9,14 @@ function WeatherForecastCom(props) {
         const data = props.weatherInfo.forecasts;
         const Forecast = data.map(info => {
             const weatherType = public_fun.changeWeaterType(info.dayWeather),
-                weatherHeadClass: React.CSSProperties = {
+                nightWeatherType = public_fun.changeWeaterType(info.nightWeather, true),
+                cardHeadStyle = {
                     color: '#fff',
                     textShadow: "-2px 0px 4px #000, 0px 2px 4px #000, 2px 0px 4px #000, 0px 2px 4px #000"
                 };
-            const nightWeatherType = public_fun.changeWeaterType(info.nightWeather, true);
             return (
                 <Col span={20 / data.length} key={info.date}>
-                    <Card title={info.date} hoverable={true} className={weatherType.class} headStyle={weatherHeadClass}>
+                    <Card title={info.date} hoverable={true} className={weatherType.class} headStyle={{...cardHeadStyle}}>
                         <div className={`forecastItemBox`}>
                             <h3>白天</h3>
                             <div>
